@@ -8,3 +8,19 @@
 
 </body>
 </html>
+
+<script>
+    (function() {
+        var requestAnimId;
+
+        var initialisation = function() {
+            requestAnimId = window.requestAnimationFrame(principale);
+        }
+
+        var principal = function() {
+            requestAnimId = window.requestAnimationFrame(principal);
+        }
+
+        window.onload = initialisation();
+    })();
+</script>
