@@ -35,10 +35,13 @@
 
             var initialisation = function() {
                 var canvasTerrain = window.document.createElement("canvas");
+                canvasTerrain.style.position = "absolute";
+                canvasTerrain.style.zIndex = 1;
+                canvas.style.background = couleurTerrain;
                 canvasTerrain.width = terrainLongueur;
                 canvasTerrain.height = terrainLargeur;
                 document.body.appendChild(canvasTerrain);
-                canvasTerrainContext = canvasTerrain.getContext("2d");
+                canvasTerrainContext = canvas.getContext('2d');
 
                 dessinerTerrain();
                 requestAnimId = window.requestAnimationFrame(principale);
@@ -46,6 +49,23 @@
 
             var principale = function() {
                 requestAnimId = window.requestAnimationFrame(principale);
+            }
+
+            var creerCanvasContext = function(name, width, height, zindex, color){
+                var canvas = window.document.createElement("canvas");
+                canvas.id = name;
+                canvas.style.position = "absolute";
+
+                if(color != undefined){
+                    canvas.style.background = color;
+                }
+
+                canvas.style.zIndex = zindex;
+                canvas.width = widht;
+                canvas.height = height;
+                document.body.appendChild(canvas);
+
+                return canvas.getContext('2d');
             }
 
             window.onload = initialisation();
