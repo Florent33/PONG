@@ -5,9 +5,9 @@
     <title></title>
 </head>
 <body>
-    <div style="position: absolute">
+    <div class="positionTerrain">
         <h1>PONG</h1>
-        <canvas id="canvas" width="400" height="400">alternate content</canvas>
+        <canvas id="canvas" width="800" height="600" style="border-:1px solid white; background-color: #000000;">alternate content</canvas>
     </div>
 </body>
 </html>
@@ -15,13 +15,35 @@
 <script>
     (function() {
         var requestAnimId;
+        var canvasTerrainContext;
+        var terrainLongueur = 800;
+        var terrainLargeur = 600;
+        var filetLargeur = 6;
+        var couleurTerrain = "#000000";
+        var couleurFilet = "#FFFFFF";
 
         var initialisation = function() {
+            var canvasTerrain = window.document.createElement("canvas");
+            canvasTerrain.width = terrainLongueur;
+            canvasTerrain.height = terrainLargeur;
+            document.body.appendChild(canvasTerrain);
+
             requestAnimId = window.requestAnimationFrame(principale);
         }
 
-        var principal = function() {
-            requestAnimId = window.requestAnimationFrame(principal);
+        var dessinerTerrain = function() {
+
+            //Le fond noir
+            canvasTerrainContext.fillStyle = couleurTerrain;
+            canvasTerrainContext.fillRect(0, 0, terrainLongueur, terrainLargeur);
+
+            //Le terrain
+            canvasTerrainContext.fillStyle = couleurFilet;
+            canvasTerrainContext.fillRect(terrainLongueur/2, terrainLargeur/2, filetLargeur, terrainLargeur);
+        }
+
+        var principale = function() {
+            requestAnimId = window.requestAnimationFrame(principale);
         }
 
         window.onload = initialisation();
